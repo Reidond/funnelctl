@@ -1,0 +1,64 @@
+[package]
+name = "funnelctl"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT"
+description = "Short-lived public dev tunnels via Tailscale Funnel"
+repository = "https://github.com/andriishafar/funnelctl"
+
+[dependencies]
+# CLI
+clap = { version = "4.5", features = ["derive", "cargo", "env"] }
+clap_complete = "4.5"
+
+# Async runtime
+tokio = { version = "1.40", features = ["full"] }
+async-trait = "0.1"
+
+# HTTP client for LocalAPI
+hyper = { version = "1.5", features = ["client", "http1"] }
+hyper-util = { version = "0.1", features = ["client", "client-legacy", "tokio"] }
+http-body-util = "0.1"
+hyperlocal = "0.9"
+base64 = "0.22"
+bytes = "1.7"
+futures = "0.3"
+tokio-util = { version = "0.7", features = ["codec", "io"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+humantime = "2.1"
+
+# Error handling
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Terminal
+supports-color = "3.0"
+
+# Misc
+url = { version = "2.5", features = ["serde"] }
+rand = "0.8"
+fs4 = "0.8"
+libc = "0.2"
+
+[dev-dependencies]
+tempfile = "3.13"
+
+[profile.release]
+strip = true
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[[bin]]
+name = "funnelctl"
+path = "src/main.rs"

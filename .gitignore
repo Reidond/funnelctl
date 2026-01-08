@@ -1,0 +1,14 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# Cargo
+# Keep Cargo.lock for binaries; ignore for libraries if desired.
+# /Cargo.lock
+
+# Code/Codex artifacts
+.code/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
